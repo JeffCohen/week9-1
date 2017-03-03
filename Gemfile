@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.5'
 gem 'ez'
 
+gem 'kaminari'
+
 gem 'bootstrap_form'
 
 gem 'sass-rails', '~> 5.0'

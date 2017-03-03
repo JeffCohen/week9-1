@@ -1,4 +1,11 @@
-<% movies = Movie.all %>
+<% if params["q"].present? %>
+  <% q = params["q"] %>
+  <% movies = Movie.where("title LIKE '%#{q}%'").page(params["page"]).per(7) %>
+<% else %>
+  <% movies = Movie.page(params["page"]).per(7) %>
+<% end %>
+
+<%= paginate(movies) %>
 
 <div class="row">
 

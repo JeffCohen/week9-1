@@ -36,7 +36,12 @@ class MoviesController < ApplicationController
     redirect_to "/movies"
   end
 
-
+  # SELECT * FROM movies WHERE title LIKE ?
+  #   OR actors.name LIKE ? INNER JOIN roles
+  #   ON roles.movie_id = movies.id INNER JOIN
+  #   actors WHERE actors.id = roles.actor_id
+  
+  
   def index
   end
 
