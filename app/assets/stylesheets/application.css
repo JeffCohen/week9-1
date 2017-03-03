@@ -1,0 +1,43 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ *= require rails_bootstrap_forms
+ *= require_self
+ *
+ * You're free to add your application-wide styles to this file, after these comments.
+ *
+ */
+
+body {
+  margin-top: 30px;
+}
+.navbar-inverse .navbar-brand {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 36px;
+  color: #ff3061;
+  padding-top: 20px;
+}
+.thumbnail {
+  border: none;
+  text-align: center;
+}
+.thumbnail a>img, .thumbnail>img, img {
+  height: 317px;
+  width: 211px;
+  box-shadow: 8px 8px 8px #999;
+  margin-bottom: 8px;
+}
+h1.title {
+  padding: 0 30px 30px 0;
+}
+h2 {
+  font-size: 22px;
+}
+
+.mpaa {
+  font-size: 0.4em;
+  text-transform: uppercase;
+  border: 1px solid #ccc;
+  padding: 4px;
+  vertical-align: middle;
+}

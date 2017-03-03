@@ -1,0 +1,22 @@
+<% user = User.new %>
+
+<div class="row">
+
+  <div class="col-sm-4">
+    <h1>Add a New User</h1>
+  </div>
+  <div class="col-sm-4">
+
+    <%= bootstrap_form_for(user) do |form| %>
+
+      <%= form.text_field :name %>
+      <%= form.text_field :email %>
+      <%= form.text_field :password %>
+      <%= form.submit "Sign Me Up", class: 'btn btn-success'%>
+
+      or
+      <%= link_to "Cancel", "/movies" %>
+    <% end %>
+
+</div>
+</div>

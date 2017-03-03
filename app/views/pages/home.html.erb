@@ -1,0 +1,30 @@
+<% movies = IMDB.all %>
+
+<div class="row">
+  <div class='col-md-4'>
+    <h1>Hello!</h1>
+    <p class="lead">
+      The page you're reading right now is a static web page.
+    </p>
+    <p>
+      But we're going to transform it into a dynamic, data-backed web page.
+    </p>
+  </div>
+
+
+  
+  <div class="col-md-8">
+    <% movies.each do |the_movie| %>
+      <%= image_tag the_movie[:poster_url] %>
+    <% end %>
+  </div>
+
+</div>
+
+<!-- Things to try: -->
+<!-- 1. View the Source, Luke! -->
+<!-- 2. Remove some of the = signs -->
+<!-- 3. Learn about Ruby variables, arrays, and hashes -->
+<!-- 4. Use an array of image urls -->
+<!-- 5. Identify the repeating pattern and replace with a loop -->
+<!-- 6. Replace your array with IMDB.all as the data source -->

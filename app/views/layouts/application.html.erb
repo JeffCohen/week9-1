@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KelloggMDB</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet" type="text/css">
+  <%= javascript_include_tag 'application' %>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <nav class="navbar navbar-inverse" role="navigation">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <!-- Rails equivalent to -->
+        <!-- <a href="/" class="navbar-brand">Buyflix</a> -->
+        <%= link_to "KelloggMDB", "/", class: "navbar-brand" %>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="/movies">Movies</a>
+          </li>
+          <li>
+            <a href="/directors">Directors</a>
+          </li>
+          <li>
+            <a href="/actors">Actors</a>
+          </li>
+          <li>
+            <% if session["user_id"].present? %>
+              <% user = User.find_by(id: session["user_id"]) %>
+              <% if user.admin == true %>
+                <a href="/users">Users</a>
+              <% end %>
+            <% end %>
+          </li>
+          <form class="navbar-form navbar-left" action="/movies">
+          <div class="form-group">
+            <input name="q" value="<%= params["q"] %>" type="text" class="form-control" placeholder="Search...">
+          </div>
+        </form>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <% if session["user_id"].blank? %>
+            <li><%= link_to "Sign Up", '/users/new' %></li>
+            <li><%= link_to "Sign In", '/sessions/new' %></li>
+          <% else %>
+            <% current_user = User.find_by(id: session["user_id"]) %>
+            <li><%= link_to current_user.name, "/users/#{current_user.id}" %></li>
+            <li><%= link_to "Sign Out", '/sessions/logout', :method => :delete  %></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container">
+
+    <% if notice.present? %>
+      <p class="alert alert-success" role="alert"><%= notice %></p>
+    <% end %>
+
+    <%= yield %>
+  </div>
+
+</body>
+</html>

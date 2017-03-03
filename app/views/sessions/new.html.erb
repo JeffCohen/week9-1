@@ -1,0 +1,15 @@
+<div class="row">
+
+  <div class="col-sm-4">
+    <h1>Sign In</h1>
+
+    <%= bootstrap_form_tag url: "/sessions" do |form| %>
+
+      <%= form.email_field :email, required: true %>
+      <%= form.password_field :password, required: true %>
+      <%= form.submit "Let Me In!", class: 'btn btn-success'%>
+
+    <% end %>
+
+  </div>
+</div>

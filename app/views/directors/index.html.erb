@@ -1,0 +1,20 @@
+<div class="page-header">
+  <%= link_to "Add a New Director", "#", class: 'btn btn-primary pull-right' %>
+  <h1>Directors</h1>
+</div>
+
+
+<div class="row">
+
+  <div class="col-sm-12">
+    <ul class="list-unstyled">
+      <% Director.all.order("name").each do |director| %>
+        <li>
+          <%= link_to director.name, "/directors/#{director.id}" %>
+          (<%= pluralize(director.movies.count, "movie") %>)
+          </li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>

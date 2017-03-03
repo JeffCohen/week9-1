@@ -1,0 +1,21 @@
+<% actor = Actor.find_by(id: params["id"]) %>
+
+<div class="page-header">
+  <h1><%= actor.name %></h1>
+</div>
+
+<div class="row">
+
+  <div class="col-sm-6">
+    <h3>Filmography</h3>
+    <ul>
+        <% Role.where(actor_id: actor.id).each do |role| %>
+        <li><%= role.character_name %> in
+          <% movie = Movie.find_by(id: role.movie_id) %>
+          <%= link_to movie.title, "/movies/#{movie.id}" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>

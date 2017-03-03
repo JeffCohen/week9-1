@@ -1,0 +1,18 @@
+<div class="page-header">
+  <%= link_to "Add a New Actor", "#", class: 'btn btn-primary pull-right' %>
+  <h1>Actors</h1>
+</div>
+
+
+<div class="row">
+
+  <div class="col-sm-12">
+    <ul class="list-unstyled">
+      <% Actor.all.order("name").each do |actor| %>
+        <% n = Role.where(:actor_id => actor.id).count %>
+        <li><%= link_to actor.name, "/actors/#{actor.id}" %> (<%= n %> movies)</li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>

@@ -1,0 +1,26 @@
+<% movie = Movie.find_by(id: params["id"]) %>
+
+<div class="row">
+
+  <div class="col-sm-4">
+    <h1>Edit Movie</h1>
+  </div>
+  <div class="col-sm-4">
+
+    <%= bootstrap_form_for(movie) do |form| %>
+
+      <%= form.text_field :title %>
+      <%= form.select :mpaa, ["G", "PG", "PG-13", "R"], label: "MPAA Rating" %>
+      <%= form.collection_select :director_id, Director.all, :id, :name %>
+      <%= form.number_field :year %>
+      <%= form.number_field :runtime %>
+      <%= form.text_field :poster_url %>
+      <%= form.text_area :plot, rows: 4 %>
+      <%= form.submit class: 'btn btn-success'%>
+
+      or
+      <%= link_to "Cancel", "/movies" %>
+    <% end %>
+
+</div>
+</div>

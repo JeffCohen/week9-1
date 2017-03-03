@@ -1,0 +1,29 @@
+<% movies = Movie.all %>
+
+<div class="row">
+
+  <div class="col-sm-3 col-md-3">
+    <div class="thumbnail">
+      <a href="/movies/new">
+        <%= image_tag "add_new.png" %>
+      </a>
+    </div>
+  </div>
+
+  <% movies.each do |movie| %>
+
+    <div class="col-sm-3 col-md-3">
+      <div class="thumbnail">
+        <a href="/movies/<%= movie.id %>">
+          <% if movie.poster_url.blank? %>
+            <%= image_tag "https://placeholdit.imgix.net/~text?txtsize=35&txt=No+Poster&w=317&h=211" %>
+          <% else %>
+            <%= image_tag movie.poster_url %>
+          <% end %>
+        </a>
+      </div>
+    </div>
+
+  <% end %>
+
+</div>

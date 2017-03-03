@@ -1,0 +1,50 @@
+<% movie = Movie.find_by(id: params["id"]) %>
+<% all_movies = [] %>
+<% all_movies.push(movie) %>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="title">
+      <%= movie.title %>
+      <span class="mpaa"><%= movie.mpaa %></span>
+    </h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <p><%= image_tag movie.poster_url %></p>
+  </div>
+  <div class="col-md-4 summary">
+    <p>
+      <a href="#" class="btn btn-sm btn-success"><i class="fa fa-shopping-cart"></i> $<%= movie.price.to_f / 100 %> Buy in HD</a>
+      <% if cookies["user_id"].present? %>
+        <%= link_to "Edit", "/movies/#{movie.id}/edit", class: 'btn btn-sm btn-primary' %>
+        <%= link_to "Delete", "/movies/#{movie.id}", class: 'btn btn-sm btn-primary',  method: :delete, data: { confirm: "Are you out of your mind?" } %>
+      <% end %>
+    </p>
+
+    <p><strong>Released:</strong> <%= movie.year %></p>
+    <p><strong>Directed By:</strong>
+      <% director = movie.director %>
+
+      <% if director != nil %>
+        <%= link_to director.name, "/directors/#{director.id}" %>
+      <% else %>
+         (No director)
+      <% end %>
+    </p>
+
+    <p><strong>Cast:</strong>
+
+      <%= movie.actors.pluck("name").to_sentence %>
+
+    </p>
+
+    <h2>Summary</h2>
+    <p>
+      <%= movie.plot %>
+    </p>
+  </div>
+</div>
